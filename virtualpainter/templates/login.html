@@ -1,0 +1,73 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+  	<title>Login Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="{% static 'usr/css/style.css' %}">
+
+	</head>
+	<body class="img js-fullheight" style="background-image: url({% static 'usr/images/cropaweed.webp' %});">
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-4">
+					<div class="login-wrap p-0">
+		      	<h3 class="mb-4 text-center">Have an account?</h3>
+		      	<form action="" class="signin-form" method="post">
+					{% csrf_token %}
+		      		<div class="form-group">
+		      			<input type="text" class="form-control" placeholder="Username" name="u" required>
+		      		</div>
+	            <div class="form-group">
+	              <input id="password-field" type="password" class="form-control" placeholder="Password" name="p" required>
+	              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+	            </div>
+	            <div class="form-group">
+	            	<button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
+	            </div>
+	          </form>
+						<a href="{% url 'frontend:register' %}">	          <p class="w-100 text-center"> Or Sign Up </p>
+</a>
+
+		      </div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="{% static 'usr/js/jquery.min.js' %}"></script>
+  <script src="{% static 'usr/js/popper.js' %}"></script>
+  <script src="{% static 'usr/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'usr/js/main.js' %}"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ {% if messages %}
+        {% for i in messages %}
+            {% if i.tags == 'warning' %}
+                <script>
+                    swal('{{i}}','', 'warning');
+                </script>
+            {% elif i.tags == 'error' %}
+                <script>
+                    swal('{{i}}','', 'error');
+                </script>
+            {% else %}
+                <script>
+                    swal('{{i}}','', 'success');
+                </script>
+            {% endif %}
+
+        {% endfor %}
+    {% endif %}
+
+	</body>
+</html>
+
